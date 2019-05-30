@@ -77,6 +77,10 @@ public class DatiCondivisi {
     public int getNum19_36Letti() {
         return num19_36Letti;
     }
+
+    public int getBuffer() {
+        return buffer;
+    }
     
     
 
