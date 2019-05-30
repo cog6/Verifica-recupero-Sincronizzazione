@@ -38,6 +38,7 @@ public class ThConta1_18 extends Thread {
                 }
 
                 d.getSemVisualizza().release();                     //avvisa il thread visualizza che è avvenuto un cambiamento
+//                d.getSemGenera().release();
 
             } catch (InterruptedException ex) {
                 Logger.getLogger(ThConta1_18.class.getName()).log(Level.SEVERE, null, ex);

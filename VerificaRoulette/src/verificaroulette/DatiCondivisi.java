@@ -39,71 +39,71 @@ public class DatiCondivisi {
         semGenera = new Semaphore(1);
         semConta1_18 = new Semaphore(0);
         semConta19_36 = new Semaphore(0);
-        semVisualizza = new Semaphore(0);
+        semVisualizza = new Semaphore(-1);
     }
 
-    public int getNumDaGenerare() {
+    public synchronized int getNumDaGenerare() {
         return numDaGenerare;
     }
 
-    public Semaphore getSemGenera() {
+    public synchronized Semaphore getSemGenera() {
         return semGenera;
     }
 
-    public Semaphore getSemConta1_18() {
+    public synchronized Semaphore getSemConta1_18() {
         return semConta1_18;
     }
 
-    public Semaphore getSemConta19_36() {
+    public  synchronized Semaphore getSemConta19_36() {
         return semConta19_36;
     }
 
-    public Semaphore getSemVisualizza() {
+    public synchronized Semaphore getSemVisualizza() {
         return semVisualizza;
     }
 
-    public int getNum1_18Inseriti() {
+    public synchronized int getNum1_18Inseriti() {
         return num1_18Inseriti;
     }
 
-    public int getNum1_18Letti() {
+    public synchronized int getNum1_18Letti() {
         return num1_18Letti;
     }
 
-    public int getNum19_36Inseriti() {
+    public synchronized int getNum19_36Inseriti() {
         return num19_36Inseriti;
     }
 
-    public int getNum19_36Letti() {
+    public synchronized int getNum19_36Letti() {
         return num19_36Letti;
     }
 
-    public int getBuffer() {
+    public synchronized int getBuffer() {
         return buffer;
     }
     
     
 
-    public void setBuffer(int buffer) {
+    public synchronized void setBuffer(int buffer) {
         this.buffer = buffer;
     }
         
     
     
     /*i prossimi metodi incrementano direttamente le varie variabili così da facilitare il programma*/
-    public void incNum1_18Inseriti(){
+    public synchronized void incNum1_18Inseriti(){
         num1_18Inseriti++;
     }
     
-    public void incNum1_18Letti(){
+    public synchronized void incNum1_18Letti(){
         num1_18Letti++;
     }
     
-    public void incNum19_36Inseriti(){
+    public synchronized void incNum19_36Inseriti(){
         num19_36Inseriti++;
     }
     
-    public void incNum19_36Letti(){
+    public synchronized void incNum19_36Letti(){
         num19_36Letti++;
     }
     

@@ -6,6 +6,8 @@
 package verificaroulette;
 
 import java.util.Random;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -23,23 +25,34 @@ public class ThGenera extends Thread{
     public void run(){
         Random rn = new Random();
         int nGenerato = 0;
+        int numZeri = 0;
         for(int i = 0; i < nDaGenerare; i++){            
-                d.getSemGenera().acquireUninterruptibly();
+            try {
+                d.getSemGenera().acquire();
+                
+                
+                nGenerato = rn.nextInt(37);
+                d.setBuffer(nGenerato);
+                
+                
+                
+                if(nGenerato >= 1 && nGenerato <= 18)
+                    d.incNum1_18Inseriti();
+                else if(nGenerato >= 19 && nGenerato <= 36)
+                    d.incNum19_36Inseriti();
+                
+                d.getSemConta1_18().release();
+                d.getSemConta19_36().release();
+                d.getSemVisualizza().release();
+            } catch (InterruptedException ex) {
+                Logger.getLogger(ThGenera.class.getName()).log(Level.SEVERE, null, ex);
+            }
             
             
-            nGenerato = rn.nextInt(37);
-            d.setBuffer(nGenerato);
             
-            d.getSemConta1_18().release();
-            d.getSemConta19_36().release();
-            
-            if(nGenerato >= 1 && nGenerato <= 18)
-                d.incNum1_18Inseriti();
-            else if(nGenerato >= 19 && nGenerato <= 36)
-                d.incNum19_36Inseriti();
-            
-            
-            d.getSemVisualizza().release();
         }
+        
+        
+        
     }
 }

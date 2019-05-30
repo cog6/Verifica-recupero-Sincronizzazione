@@ -16,16 +16,17 @@ public class VerificaRoulette {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
         // TODO code application logic here
         int numCaratteri = 0;
+        int numZeri = 0;
 
         Scanner sc = new Scanner(System.in);
         
         do{
         System.out.println("Inserire il numero di caratteri da generare:");
         numCaratteri = sc.nextInt();
-        }while(numCaratteri < 0 || numCaratteri > 100);
+        }while(numCaratteri < 0 || numCaratteri > 40);
 
         DatiCondivisi d = new DatiCondivisi(numCaratteri);
 
@@ -38,6 +39,14 @@ public class VerificaRoulette {
         thConta19_36.start();
         thConta1_18.start();
         thVisualizza.start();
+        
+        thGenera.join();
+        thConta19_36.join();
+        thConta1_18.join();
+        thVisualizza.join();
+        
+        numZeri = numCaratteri-(d.getNum19_36Inseriti() + d.getNum1_18Inseriti());
+        System.out.println("numero di zeri: "+numZeri);
     }
     
 }

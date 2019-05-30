@@ -31,12 +31,13 @@ public class ThConta19_36 extends Thread{
                 d.getSemConta19_36().acquire();                      //aspetta che il ThGenera generi un numero
 
                 n = d.getBuffer();
-                if (n >= 1 && n <= 18)                              //controlla se è uno dei numeri di sua competenza
+                if (n >= 19 && n <= 36)                              //controlla se è uno dei numeri di sua competenza
                 {
                     d.incNum19_36Letti();
                 }
 
                 d.getSemVisualizza().release();                     //avvisa il thread visualizza che è avvenuto un cambiamento
+                //d.getSemGenera().release();
 
             } catch (InterruptedException ex) {
                 Logger.getLogger(ThConta1_18.class.getName()).log(Level.SEVERE, null, ex);
